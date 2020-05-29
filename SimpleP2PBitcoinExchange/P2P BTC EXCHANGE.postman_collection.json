@@ -1,0 +1,116 @@
+{
+	"id": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+	"name": "P2P BTC EXCHANGE",
+	"description": "",
+	"order": [
+		"e74bd9f9-3a5c-aeb0-75ba-5e61adfa0977",
+		"13051d95-e240-86b2-779d-8629d09e6df1",
+		"6b1d5e9d-e37c-7e54-2b33-31b4a9ce9ac0"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1590759008528,
+	"owner": 0,
+	"public": false,
+	"requests": [
+		{
+			"id": "13051d95-e240-86b2-779d-8629d09e6df1",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "",
+					"value": "",
+					"description": "",
+					"enabled": false
+				}
+			],
+			"url": "http://localhost:8080/exchange/users/login",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1590769245071,
+			"name": "http://localhost:8080/exchange/users/login",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"inayat7\",\n\t\"password\": \"staging\"\n}"
+		},
+		{
+			"id": "6b1d5e9d-e37c-7e54-2b33-31b4a9ce9ac0",
+			"headers": "Content-Type: application/json\nAuthorization: inayat7:c5c9895b-8aba-42e8-9d4e-4417a99b11f5\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "inayat7:c5c9895b-8aba-42e8-9d4e-4417a99b11f5",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/secure/hello",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1590769238414,
+			"name": "http://localhost:8080/exchange/secure/test",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"inayat7\",\n\t\"password\": \"staging\"\n}"
+		},
+		{
+			"id": "e74bd9f9-3a5c-aeb0-75ba-5e61adfa0977",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/users/register",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1590760523130,
+			"name": "http://localhost:8080/exchange/users/register",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\n\t\"name\":\"inayat\",\n\t\"username\":\"inayat\",\n\t\"password\": \"staging\"\n}"
+		}
+	]
+}
