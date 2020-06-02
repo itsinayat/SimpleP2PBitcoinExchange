@@ -8,10 +8,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
 
 import com.altran.sbc.model.BaseModel;
+import com.altran.sbc.model.OrdersRequest;
+import com.altran.sbc.model.OrdersResponse;
 import com.altran.sbc.model.User;
 
 public class UsersDao {
@@ -104,4 +108,35 @@ public class UsersDao {
 		return username + ":" + uuid.toString();
 	}
 
+	public String findBalanceByUserName(String username, String coin) throws SQLException {
+		String QUERY = "select * from users where username = '" + username + "'";
+		PreparedStatement preparedStatement = con.prepareStatement(QUERY);
+		ResultSet rs = preparedStatement.executeQuery();
+		if (rs.next()) {
+			Double bal;
+			if (coin.equalsIgnoreCase("BTC")) {
+				bal = rs.getDouble("btcBalance");
+				return String.valueOf(bal);
+			} else if (coin.equalsIgnoreCase("USD")) {
+				bal = rs.getDouble("usdBalance");
+				return String.valueOf(bal);
+			} else {
+				return "WRONG COIN";
+			}
+
+		} else
+			return "USRER NOT FOUND";
+	}
+
+	public List<OrdersResponse> getOrderTable() throws SQLException {
+		List<OrdersResponse> list = new ArrayList<OrdersResponse>();
+		String QUERY = "select * from orders";
+		PreparedStatement preparedStatement = con.prepareStatement(QUERY);
+		ResultSet rs = preparedStatement.executeQuery();
+		while (rs.next()) {
+			list.add(new OrdersResponse(rs.getInt("id"), rs.getString("type"), rs.getDouble("amount"),
+					rs.getDouble("price"), rs.getString("username"), rs.getString("status")));
+		}
+		return list;
+	}
 }
