@@ -24,16 +24,6 @@ public class OrderService {
 	private final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
 	public BaseModel executeOrder(OrdersRequest or) throws IOException, InterruptedException, SQLException {
-//		HttpRequest request = HttpRequest.newBuilder().GET()
-//				.uri(URI.create("https://blockchain.info/tobtc?currency=USD&value=1"))
-//				.setHeader("User-Agent", "Java 8 HttpClient Bot").build();
-//		HttpResponse<String> response = null;
-//		try {
-//			response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-//		} catch (Exception e) {
-//			return new BaseModel("HTTP connection ERROR", 345);
-//		}
-//		Double btcValue = Double.valueOf(response.body());
 		
 		Double btcValue = 1/or.getPrice();
 		Double usdValue = or.getPrice();
