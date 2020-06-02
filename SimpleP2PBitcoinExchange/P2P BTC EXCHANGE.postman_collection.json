@@ -5,7 +5,11 @@
 	"order": [
 		"e74bd9f9-3a5c-aeb0-75ba-5e61adfa0977",
 		"13051d95-e240-86b2-779d-8629d09e6df1",
-		"6b1d5e9d-e37c-7e54-2b33-31b4a9ce9ac0"
+		"6b1d5e9d-e37c-7e54-2b33-31b4a9ce9ac0",
+		"eba57d31-edf4-6971-215c-9e12d5e6c5eb",
+		"385912e2-6e94-6560-b84a-42bb84f30c02",
+		"00d7a521-fe06-45ad-c642-78bf0d8f4a00",
+		"8e64f953-9b94-e0a1-3fe6-46cf6e4f90ae"
 	],
 	"folders": [],
 	"folders_order": [],
@@ -13,6 +17,41 @@
 	"owner": 0,
 	"public": false,
 	"requests": [
+		{
+			"id": "00d7a521-fe06-45ad-c642-78bf0d8f4a00",
+			"headers": "Content-Type: application/json\nAuthorization: inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/secure/placeOrder",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1591068511537,
+			"name": "http://localhost:8080/exchange/secure/placeOrder",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\t\"type\" :\"SELL\",\n\t\"seller\" : \"inayat\",\n\t\"amount\": 1,\n\t\"coin\":\"BTC\"\n}"
+		},
 		{
 			"id": "13051d95-e240-86b2-779d-8629d09e6df1",
 			"headers": "Content-Type: application/json\n",
@@ -41,12 +80,47 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1590769245071,
+			"time": 1591062720519,
 			"name": "http://localhost:8080/exchange/users/login",
 			"description": "",
 			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
 			"responses": [],
 			"rawModeData": "{\n\t\"username\":\"inayat7\",\n\t\"password\": \"staging\"\n}"
+		},
+		{
+			"id": "385912e2-6e94-6560-b84a-42bb84f30c02",
+			"headers": "Content-Type: application/json\nAuthorization: inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/secure/executeOrder",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1591069242344,
+			"name": "http://localhost:8080/exchange/secure/executeOrder",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\t\"buyer\" :\"inayat7\",\n\t\"seller\" : \"inayat\",\n\t\"amount\": 1,\n\t\"coin\":\"BTC\",\n\t\"price\":\"10077.5975007558\",\n\t\"orderId\":1\n}"
 		},
 		{
 			"id": "6b1d5e9d-e37c-7e54-2b33-31b4a9ce9ac0",
@@ -84,6 +158,41 @@
 			"rawModeData": "{\n\t\"username\":\"inayat7\",\n\t\"password\": \"staging\"\n}"
 		},
 		{
+			"id": "8e64f953-9b94-e0a1-3fe6-46cf6e4f90ae",
+			"headers": "Content-Type: application/json\nAuthorization: inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "inayat7:bd193eb2-40ff-449a-a5de-8c0a1a60017a",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/users/getOrderTable",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1591066311909,
+			"name": "http://localhost:8080/exchange/users/getOrderTable",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\t\"type\" :\"SELL\",\n\t\"seller\" : \"inayat\",\n\t\"amount\": 1,\n\t\"coin\":\"BTC\"\n}"
+		},
+		{
 			"id": "e74bd9f9-3a5c-aeb0-75ba-5e61adfa0977",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -111,6 +220,41 @@
 			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
 			"responses": [],
 			"rawModeData": "{\n\t\"name\":\"inayat\",\n\t\"username\":\"inayat\",\n\t\"password\": \"staging\"\n}"
+		},
+		{
+			"id": "eba57d31-edf4-6971-215c-9e12d5e6c5eb",
+			"headers": "Content-Type: application/json\nAuthorization: inayat7:c5c9895b-8aba-42e8-9d4e-4417a99b11f5\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "Authorization",
+					"value": "inayat7:c5c9895b-8aba-42e8-9d4e-4417a99b11f5",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/exchange/users/getBalance/inayat7/USD",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1590993320605,
+			"name": "http://localhost:8080/exchange/users/getBalance/inayat7/USD",
+			"description": "",
+			"collectionId": "ad8a0b3f-bc34-a058-f1e6-51bad60dbb8f",
+			"responses": [],
+			"rawModeData": "{\n\t\"username\":\"inayat7\",\n\t\"password\": \"staging\"\n}"
 		}
 	]
 }
