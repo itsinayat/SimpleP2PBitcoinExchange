@@ -1,12 +1,15 @@
 package com.altran.sbc.dao;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import org.apache.http.HttpEntity;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
+import org.apache.http.util.EntityUtils;
 
 import com.altran.sbc.model.BaseModel;
 import com.altran.sbc.model.OrdersRequest;
@@ -20,7 +23,6 @@ public class OrdersDao {
 	}
 
 	// one instance, reuse
-	private final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
 	// IF BUY BTC deduct USD add BTC from Buyers account and deduct BTC and add USD
 	// in seller account
@@ -135,16 +137,19 @@ public class OrdersDao {
 	}
 
 	public BaseModel placeOrder(OrdersRequest or) throws SQLException {
-		HttpRequest request = HttpRequest.newBuilder().GET()
-				.uri(URI.create("https://blockchain.info/tobtc?currency=USD&value=1"))
-				.setHeader("User-Agent", "Java 8 HttpClient Bot").build();
-		HttpResponse<String> response = null;
-		Double btcValue = null;
-		try {
-			response = httpClient.send(request, HttpResponse.BodyHandlers.ofString());
-			btcValue = Double.valueOf(response.body());
-		} catch (Exception e) {
-			return new BaseModel("HTTP connection ERROR", 345);
+		HttpGet request = new HttpGet("https://blockchain.info/tobtc?currency=USD&value=1");
+		 Double btcValue = null;
+		 try {
+			 CloseableHttpClient httpClient = HttpClientBuilder.create().disableRedirectHandling().build();
+             CloseableHttpResponse response = httpClient.execute(request);
+             HttpEntity entity = response.getEntity();
+             if (entity != null) {
+                 // return it as a String
+                 String result = EntityUtils.toString(entity);
+                 btcValue = Double.valueOf(result);
+             }
+		 }catch (Exception e) {
+			// TODO: handle exception
 		}
 
 		// updating SELLER

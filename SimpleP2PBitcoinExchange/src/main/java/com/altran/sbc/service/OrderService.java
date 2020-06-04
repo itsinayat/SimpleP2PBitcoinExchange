@@ -1,7 +1,6 @@
 package com.altran.sbc.service;
 
 import java.io.IOException;
-import java.net.http.HttpClient;
 import java.sql.SQLException;
 
 import com.altran.sbc.dao.OrdersDao;
@@ -20,8 +19,6 @@ public class OrderService {
 		this.ordersDao = ordersDao;
 	}
 
-	// one instance, reuse
-	private final HttpClient httpClient = HttpClient.newBuilder().version(HttpClient.Version.HTTP_2).build();
 
 	public BaseModel executeOrder(OrdersRequest or) throws IOException, InterruptedException, SQLException {
 		
