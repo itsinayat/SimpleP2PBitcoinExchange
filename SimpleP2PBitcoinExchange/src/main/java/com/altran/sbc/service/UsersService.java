@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.eclipse.jdt.internal.compiler.ast.ArrayAllocationExpression;
 
 import com.altran.sbc.dao.UsersDao;
@@ -40,4 +42,16 @@ public class UsersService {
 		return response;
 	}
 
+	public BaseModel logout(HttpServletRequest req) {
+	String auth = req.getHeader("Authorization");
+	String[] tokens = auth.split(":");
+	String username = tokens[0];
+	boolean result = dao.logout(username);
+	if(result) {
+		return new BaseModel("LOGGED OUT", 409);
+	}else {
+		return new BaseModel("ERROR", 405);
+	}
+
+	}
 }

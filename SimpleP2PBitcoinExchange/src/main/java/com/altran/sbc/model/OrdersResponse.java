@@ -1,7 +1,7 @@
 package com.altran.sbc.model;
 
 public class OrdersResponse {
-	public OrdersResponse(int id, String type, Double amount, Double price, String username, String status) {
+	public OrdersResponse(int id, String type, Double amount, Double price, String username, String status,String coin) {
 		super();
 		this.id = id;
 		this.type = type;
@@ -9,7 +9,9 @@ public class OrdersResponse {
 		this.price = price;
 		this.username = username;
 		this.status = status;
+		this.coin = coin;
 	}
+	String coin;
 	int id;
 	String type;
 	Double amount;
@@ -51,6 +53,12 @@ public class OrdersResponse {
 	}
 	public void setStatus(String status) {
 		this.status = status;
+	}
+	public String getCoin() {
+		return coin;
+	}
+	public void setCoin(String coin) {
+		this.coin = coin;
 	}
 
 }

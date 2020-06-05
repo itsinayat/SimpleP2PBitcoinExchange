@@ -14,10 +14,15 @@ import java.util.Properties;
 import java.util.UUID;
 
 import com.altran.sbc.model.BaseModel;
+import com.altran.sbc.model.CurrencyType;
 import com.altran.sbc.model.OrdersRequest;
 import com.altran.sbc.model.OrdersResponse;
 import com.altran.sbc.model.User;
 
+/**
+ * @author GUR56851
+ *
+ */
 public class UsersDao {
 	private Connection con;
 	public static final String SALT = "exchange-salt";
@@ -27,6 +32,11 @@ public class UsersDao {
 		this.con = con;
 	}
 
+	/**
+	 * @param user
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
 	public BaseModel register(User user) throws NoSuchAlgorithmException {
 		try {
 			String QUERY = "select * from users where username = '" + user.getUsername() + "'";
@@ -55,6 +65,11 @@ public class UsersDao {
 		}
 	}
 
+	/**
+	 * @param user
+	 * @return
+	 * @throws Exception
+	 */
 	public BaseModel login(User user) throws Exception {
 		String saltedPassword = SALT + user.getPassword();
 		String hashedPassword = generateHash(saltedPassword);
@@ -84,6 +99,11 @@ public class UsersDao {
 		}
 	}
 
+	/**
+	 * @param input
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
 	private static String generateHash(String input) throws NoSuchAlgorithmException {
 		StringBuilder hash = new StringBuilder();
 
@@ -103,21 +123,31 @@ public class UsersDao {
 		return hash.toString();
 	}
 
+	/**
+	 * @param username
+	 * @return
+	 */
 	private static String generatetoken(String username) {
 		UUID uuid = UUID.randomUUID();
 		return username + ":" + uuid.toString();
 	}
 
+	/**
+	 * @param username
+	 * @param coin
+	 * @return
+	 * @throws SQLException
+	 */
 	public String findBalanceByUserName(String username, String coin) throws SQLException {
 		String QUERY = "select * from users where username = '" + username + "'";
 		PreparedStatement preparedStatement = con.prepareStatement(QUERY);
 		ResultSet rs = preparedStatement.executeQuery();
 		if (rs.next()) {
 			Double bal;
-			if (coin.equalsIgnoreCase("BTC")) {
+			if (coin.equalsIgnoreCase(CurrencyType.BTC.getCurrencyname())) {
 				bal = rs.getDouble("btcBalance");
 				return String.valueOf(bal);
-			} else if (coin.equalsIgnoreCase("USD")) {
+			} else if (coin.equalsIgnoreCase(CurrencyType.USD.getCurrencyname())) {
 				bal = rs.getDouble("usdBalance");
 				return String.valueOf(bal);
 			} else {
@@ -128,6 +158,10 @@ public class UsersDao {
 			return "USRER NOT FOUND";
 	}
 
+	/**
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<OrdersResponse> getOrderTable() throws SQLException {
 		List<OrdersResponse> list = new ArrayList<OrdersResponse>();
 		String QUERY = "select * from orders";
@@ -135,8 +169,22 @@ public class UsersDao {
 		ResultSet rs = preparedStatement.executeQuery();
 		while (rs.next()) {
 			list.add(new OrdersResponse(rs.getInt("id"), rs.getString("type"), rs.getDouble("amount"),
-					rs.getDouble("price"), rs.getString("username"), rs.getString("status")));
+					rs.getDouble("price"), rs.getString("username"), rs.getString("status"), rs.getString("coin")));
 		}
 		return list;
+	}
+
+	public boolean logout(String username) {
+		try {
+			String sql = "update users set token='" + "" + "' where username='" + username + "'";
+			Statement stmt = con.createStatement();
+			stmt.executeUpdate(sql);
+			return true;
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+
+	
 	}
 }
